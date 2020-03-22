@@ -5,6 +5,7 @@ type Props = {
     onClick: () => void
 }
 
+/** Simple button. */
 export const Button = (props: Props) => (
     <div className="btn btn-primary mr-2" onClick={props.onClick}>
         { props.label }

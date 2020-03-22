@@ -1,1 +1,1 @@
-body{font-family:Rubik;background:#ddd}.container{max-width:600px;height:100%;margin:auto;padding:2em;background:#fff}.bar-graph .bar-graph-bar{height:16px;background-color:#b87b7a;border-radius:4px}
+body{font-family:Rubik;background:#ddd}.container{max-width:600px;height:100%;margin:auto;padding:2em;background-color:#fff}.bar-graph{background:#eee;border-radius:4px}.bar-graph .bar-graph-bar{height:12px;background-color:#5cadd6;border-bottom:2px solid #39c;border-radius:4px}.bar-graph .bar-graph-bar.day{height:4px;background-color:#888;border:none}

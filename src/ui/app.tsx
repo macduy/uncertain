@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Checkbox } from "ui/components/checkbox"
 import { Button } from "ui/components/button"
-import { Model, advance } from "model/model"
+import { Model, Parameters, advance } from "model/model"
 import { format } from "date-fns"
 import { BarGraph } from "ui/components/bar_graph"
 import { Policy, evaluateTransmission } from "model/policy"
+import { PolicyPanel } from "ui/policy_panel"
 
 interface Props {
 
@@ -14,6 +14,7 @@ interface State {
     day: number
     model: Model
     policy: Policy
+    params: Parameters
 }
 
 const startingPolicy: Policy = {
@@ -21,6 +22,7 @@ const startingPolicy: Policy = {
     closePubsAndRestaurants: false,
 }
 
+/** Wrapper for the entire app. All states and data are stored here. */
 export class App extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
@@ -28,6 +30,10 @@ export class App extends React.Component<Props, State> {
             day: 0,
             model: {
                 infected: 150,
+                dead: 0,
+                recovered: 0,
+            },
+            params: {
                 transmission: evaluateTransmission(startingPolicy),
             },
             policy: startingPolicy
@@ -37,11 +43,19 @@ export class App extends React.Component<Props, State> {
     render() {
         return <div className="container">
             <CurrentDate day={this.state.day} />
+            <BarGraph max={180} value={this.state.day} class="day" />
+
             Infected: { this.state.model.infected }
             <BarGraph max={1000} value={this.state.model.infected} />
 
-            <Checkbox id="policyCloseSchools" value={this.state.policy.closeSchools} onCheckedChange={v => this.setPolicy("closeSchools", v)} label="Close schools" />
-            <Checkbox id="policyClosePubs" value={this.state.policy.closePubsAndRestaurants} onCheckedChange={v => this.setPolicy("closePubsAndRestaurants", v)} label="Close pubs and restaurants" />
+            Recovered: { this.state.model.recovered }
+            <BarGraph max={1000} value={this.state.model.recovered} />
+
+            Dead: { this.state.model.dead }
+            <BarGraph max={500} value={this.state.model.dead} />
+
+            <PolicyPanel policy={this.state.policy} onPolicyChange={(policy, value) => this.setPolicy(policy, value)} />
+
             <Button label="Next day" onClick={ () => this.advance() } />
             <Button label="Start autorun" onClick={ () => this.startAutoRun() } />
         </div>
@@ -53,8 +67,7 @@ export class App extends React.Component<Props, State> {
 
         this.setState({
             policy: newPolicy,
-            model: {
-                ...this.state.model,
+            params: {
                 transmission: evaluateTransmission(newPolicy)
             }
         })
@@ -63,12 +76,12 @@ export class App extends React.Component<Props, State> {
     advance() {
         this.setState({
             day: this.state.day + 1,
-            model: advance(this.state.model)
+            model: advance(this.state.model, this.state.params)
         })
     }
 
     startAutoRun() {
-        setInterval(() => this.advance(), 500)
+        setInterval(() => this.advance(), 250)
     }
 }
 

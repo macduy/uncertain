@@ -9,6 +9,7 @@ export interface CheckboxProps {
     value: boolean,
 }
 
+/** Simple checkbox UI with a label. Label is clickable. */
 export const Checkbox = (props: CheckboxProps) => (
     <div className="custom-control custom-switch">
         <input

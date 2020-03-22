@@ -1,3 +1,5 @@
+@bar-graph-corner-radius: 4px;
+
 body {
     font-family: "Rubik";
     background: #ddd;
@@ -8,13 +10,23 @@ body {
     height: 100%;
     margin: auto;
     padding: 2em;
-    background: white;
+    background-color: white;
 }
 
 .bar-graph {
+    background: #eeeeee;
+    border-radius: @bar-graph-corner-radius;
+
     .bar-graph-bar {
-        height: 16px;
-        background-color: hsl(50%, 30%, 60%);
-        border-radius: 4px;
+        height: 12px;
+        background-color: hsl(200, 60%, 60%);
+        border-bottom: 2px solid hsl(200, 60%, 50%);
+        border-radius: @bar-graph-corner-radius;
+
+        &.day {
+            height: 4px;
+            background-color: #888888;
+            border: none;
+        }
     }
 }
