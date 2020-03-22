@@ -69,7 +69,7 @@ module.exports = {
       // both options are optional.
       // NOTE: This file cannot be moved to css/ unless the
       // apparatus sprites are moved under css too.
-      filename: 'styles.[contenthash].css',
+      filename: 'styles.css',
       chunkFilename: '[id].css',
     }),
     new HtmlWebPackPlugin({
