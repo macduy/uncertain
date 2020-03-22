@@ -31,15 +31,15 @@
                 "revealProblems": "onProblem"
             }
         },
-        {
-            "label": "Frontend: Serve HTTP",
-            "type": "shell",
-            "command": "python3 -m http.server",
-            "isBackground": true,
-            "options": {
-                "cwd": "${workspaceRoot}/dist"
-            },
-            "problemMatcher": []
-        }
-    ]
+    //     {
+    //         "label": "Frontend: Serve HTTP",
+    //         "type": "shell",
+    //         "command": "python3 -m http.server",
+    //         "isBackground": true,
+    //         "options": {
+    //             "cwd": "${workspaceRoot}/dist"
+    //         },
+    //         "problemMatcher": []
+    //     }
+    // ]
 }
