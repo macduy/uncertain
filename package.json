@@ -1,0 +1,49 @@
+{
+  "name": "uncertain-game-covid",
+  "version": "1.0.0",
+  "description": "Game about managing COVID-19",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/color": "3.0.0",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "@types/react-redux": "7.1.5",
+    "@types/toastr": "^2.1.37",
+    "copy-webpack-plugin": "5.0.4",
+    "css-loader": "0.28.11",
+    "date-fns": "2.7.0",
+    "html-webpack-plugin": "3.2.0",
+    "jquery": "2.2.0",
+    "jquery-ui": "1.12.1",
+    "jqueryui": "1.11.1",
+    "less": "3.11.1",
+    "less-loader": "4.1.0",
+    "mini-css-extract-plugin": "0.7.0",
+    "optimize-css-assets-webpack-plugin": "5.0.1",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-redux": "7.1.3",
+    "redux": "4.0.1",
+    "style-loader": "0.20.3",
+    "ts-loader": "6.0.2",
+    "tsconfig-paths-webpack-plugin": "3.2.0",
+    "typesafe-actions": "4.0.0",
+    "typescript": "3.7.2",
+    "webpack": "4.34.0",
+    "webpack-bundle-analyzer": "^3.5.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-merge": "^4.2.2"
+  },
+  "scripts": {
+    "webpack": "webpack --watch",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macduy/uncertain.git"
+  },
+  "keywords": [],
+  "author": "Trang & Hai",
+  "license": "MIT"
+}

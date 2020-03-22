@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Frontend: Startup",
+            "type": "shell",
+            "dependsOn": [
+                "Frontend: Build & Watch",
+                "Frontend: Serve HTTP"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "isBackground": true
+        },
+        {
+            "label": "Frontend: Build & Watch",
+            "type": "shell",
+            "command": "npx webpack --config webpack.config.js --watch --mode=production",
+            "problemMatcher": [
+                "$ts-webpack-watch",
+                "$tslint-webpack-watch"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "revealProblems": "onProblem"
+            }
+        },
+        {
+            "label": "Frontend: Serve HTTP",
+            "type": "shell",
+            "command": "python3 -m http.server",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceRoot}/dist"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
