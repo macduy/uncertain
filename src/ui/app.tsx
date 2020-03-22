@@ -27,7 +27,7 @@ export class App extends React.Component<Props, State> {
         this.state = {
             day: 0,
             model: {
-                infected: 100,
+                infected: 150,
                 transmission: evaluateTransmission(startingPolicy),
             },
             policy: startingPolicy
