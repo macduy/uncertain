@@ -4,14 +4,21 @@ import { Button } from "ui/components/button"
 import { Model, advance } from "model/model"
 import { format } from "date-fns"
 import { BarGraph } from "ui/components/bar_graph"
+import { Policy, evaluateTransmission } from "model/policy"
 
 interface Props {
 
 }
 
 interface State {
-    model: Model
     day: number
+    model: Model
+    policy: Policy
+}
+
+const startingPolicy: Policy = {
+    closeSchools: false,
+    closePubsAndRestaurants: false,
 }
 
 export class App extends React.Component<Props, State> {
@@ -21,7 +28,9 @@ export class App extends React.Component<Props, State> {
             day: 0,
             model: {
                 infected: 100,
-            }
+                transmission: evaluateTransmission(startingPolicy),
+            },
+            policy: startingPolicy
         }
     }
 
@@ -31,10 +40,24 @@ export class App extends React.Component<Props, State> {
             Infected: { this.state.model.infected }
             <BarGraph max={1000} value={this.state.model.infected} />
 
-            <Checkbox id="One" value={true} onCheckedChange={() => {}} label="Label" />
+            <Checkbox id="policyCloseSchools" value={this.state.policy.closeSchools} onCheckedChange={v => this.setPolicy("closeSchools", v)} label="Close schools" />
+            <Checkbox id="policyClosePubs" value={this.state.policy.closePubsAndRestaurants} onCheckedChange={v => this.setPolicy("closePubsAndRestaurants", v)} label="Close pubs and restaurants" />
             <Button label="Next day" onClick={ () => this.advance() } />
             <Button label="Start autorun" onClick={ () => this.startAutoRun() } />
         </div>
+    }
+
+    setPolicy(policy: keyof Policy, value: boolean) {
+        const newPolicy = { ...this.state.policy }
+        newPolicy[policy] = value
+
+        this.setState({
+            policy: newPolicy,
+            model: {
+                ...this.state.model,
+                transmission: evaluateTransmission(newPolicy)
+            }
+        })
     }
 
     advance() {
